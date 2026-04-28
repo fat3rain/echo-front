@@ -1,0 +1,10 @@
+^C:\USERS\USER\FLUTTER_PROJ\CLONED\VOIC_FRONT\BUILD\WINDOWS\X64\CMAKEFILES\D58B64105EE55BC17F5999E8089E6175\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/user/flutter_proj/cloned/voic_front/windows -BC:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64 --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64/vois.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

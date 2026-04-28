@@ -1,0 +1,28 @@
+^C:\USERS\USER\FLUTTER_PROJ\CLONED\VOIC_FRONT\BUILD\WINDOWS\X64\CMAKEFILES\95C490CE363445B0EF55D6CEC05FE38A\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\flutter_windows\flutter PROJECT_DIR=C:\Users\user\flutter_proj\cloned\voic_front FLUTTER_ROOT=C:\flutter_windows\flutter FLUTTER_EPHEMERAL_DIR=C:\Users\user\flutter_proj\cloned\voic_front\windows\flutter\ephemeral PROJECT_DIR=C:\Users\user\flutter_proj\cloned\voic_front FLUTTER_TARGET=lib\main.dart DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=true PACKAGE_CONFIG=C:\Users\user\flutter_proj\cloned\voic_front\.dart_tool\package_config.json C:/flutter_windows/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Release
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\USER\FLUTTER_PROJ\CLONED\VOIC_FRONT\BUILD\WINDOWS\X64\CMAKEFILES\C47F6A9196354EB039CB97CCB80D02D9\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\USER\FLUTTER_PROJ\CLONED\VOIC_FRONT\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/user/flutter_proj/cloned/voic_front/windows -BC:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64 --check-stamp-file C:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,13 @@
+C:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64/CMakeFiles/INSTALL.dir
+C:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64/CMakeFiles/ALL_BUILD.dir
+C:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64/CMakeFiles/ZERO_CHECK.dir
+C:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64/flutter/CMakeFiles/flutter_wrapper_plugin.dir
+C:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64/flutter/CMakeFiles/flutter_wrapper_app.dir
+C:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64/flutter/CMakeFiles/flutter_assemble.dir
+C:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64/flutter/CMakeFiles/INSTALL.dir
+C:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64/runner/CMakeFiles/vois.dir
+C:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64/runner/CMakeFiles/INSTALL.dir
+C:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64/runner/CMakeFiles/ALL_BUILD.dir
+C:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64/plugins/flutter_webrtc/CMakeFiles/flutter_webrtc_plugin.dir
+C:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64/plugins/flutter_webrtc/CMakeFiles/INSTALL.dir
+C:/Users/user/flutter_proj/cloned/voic_front/build/windows/x64/plugins/flutter_webrtc/CMakeFiles/ALL_BUILD.dir

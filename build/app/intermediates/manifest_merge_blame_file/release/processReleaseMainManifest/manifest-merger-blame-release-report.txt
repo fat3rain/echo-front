@@ -1,0 +1,203 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.vois"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="35" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:2:5-66
+11-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:2:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:3:5-78
+12-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:3:22-76
+13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+13-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:4:5-75
+13-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:4:22-73
+14    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+14-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:5:5-70
+14-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:5:22-68
+15    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+15-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:6:5-79
+15-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:6:22-77
+16    <!--
+17         Required to query activities that can process text, see:
+18         https://developer.android.com/training/package-visibility and
+19         https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
+20
+21         In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin.
+22    -->
+23    <queries>
+23-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:45:5-50:15
+24        <intent>
+24-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:46:9-49:18
+25            <action android:name="android.intent.action.PROCESS_TEXT" />
+25-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:47:13-72
+25-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:47:21-70
+26
+27            <data android:mimeType="text/plain" />
+27-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:48:13-50
+27-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:48:19-48
+28        </intent>
+29    </queries>
+30
+31    <uses-permission
+31-->[com.github.davidliu:audioswitch:89582c47c9a04c62f90aa5e57251af4800a62c9a] C:\Users\user\.gradle\caches\8.10.2\transforms\b6dde407f09826538f96798b6335a4d2\transformed\jetified-audioswitch-89582c47c9a04c62f90aa5e57251af4800a62c9a\AndroidManifest.xml:9:5-11:38
+32        android:name="android.permission.BLUETOOTH"
+32-->[com.github.davidliu:audioswitch:89582c47c9a04c62f90aa5e57251af4800a62c9a] C:\Users\user\.gradle\caches\8.10.2\transforms\b6dde407f09826538f96798b6335a4d2\transformed\jetified-audioswitch-89582c47c9a04c62f90aa5e57251af4800a62c9a\AndroidManifest.xml:10:9-52
+33        android:maxSdkVersion="30" />
+33-->[com.github.davidliu:audioswitch:89582c47c9a04c62f90aa5e57251af4800a62c9a] C:\Users\user\.gradle\caches\8.10.2\transforms\b6dde407f09826538f96798b6335a4d2\transformed\jetified-audioswitch-89582c47c9a04c62f90aa5e57251af4800a62c9a\AndroidManifest.xml:11:9-35
+34
+35    <permission
+35-->[androidx.core:core:1.13.1] C:\Users\user\.gradle\caches\8.10.2\transforms\dfc2fbca530748e569b0737b09fa016f\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
+36        android:name="com.example.vois.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+36-->[androidx.core:core:1.13.1] C:\Users\user\.gradle\caches\8.10.2\transforms\dfc2fbca530748e569b0737b09fa016f\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
+37        android:protectionLevel="signature" />
+37-->[androidx.core:core:1.13.1] C:\Users\user\.gradle\caches\8.10.2\transforms\dfc2fbca530748e569b0737b09fa016f\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
+38
+39    <uses-permission android:name="com.example.vois.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+39-->[androidx.core:core:1.13.1] C:\Users\user\.gradle\caches\8.10.2\transforms\dfc2fbca530748e569b0737b09fa016f\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
+39-->[androidx.core:core:1.13.1] C:\Users\user\.gradle\caches\8.10.2\transforms\dfc2fbca530748e569b0737b09fa016f\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
+40
+41    <application
+42        android:name="android.app.Application"
+42-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:10:9-42
+43        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+43-->[androidx.core:core:1.13.1] C:\Users\user\.gradle\caches\8.10.2\transforms\dfc2fbca530748e569b0737b09fa016f\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
+44        android:extractNativeLibs="true"
+45        android:icon="@mipmap/ic_launcher"
+45-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:11:9-43
+46        android:label="vois" >
+46-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:9:9-29
+47        <activity
+47-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:12:9-33:20
+48            android:name="com.example.vois.MainActivity"
+48-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:13:13-41
+49            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+49-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:18:13-163
+50            android:exported="true"
+50-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:14:13-36
+51            android:hardwareAccelerated="true"
+51-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:19:13-47
+52            android:launchMode="singleTop"
+52-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:15:13-43
+53            android:taskAffinity=""
+53-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:16:13-36
+54            android:theme="@style/LaunchTheme"
+54-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:17:13-47
+55            android:windowSoftInputMode="adjustResize" >
+55-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:20:13-55
+56
+57            <!--
+58                 Specifies an Android theme to apply to this Activity as soon as
+59                 the Android process has started. This theme is visible to the user
+60                 while the Flutter UI initializes. After that, this theme continues
+61                 to determine the Window background behind the Flutter UI.
+62            -->
+63            <meta-data
+63-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:25:13-28:17
+64                android:name="io.flutter.embedding.android.NormalTheme"
+64-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:26:15-70
+65                android:resource="@style/NormalTheme" />
+65-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:27:15-52
+66
+67            <intent-filter>
+67-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:29:13-32:29
+68                <action android:name="android.intent.action.MAIN" />
+68-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:30:17-68
+68-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:30:25-66
+69
+70                <category android:name="android.intent.category.LAUNCHER" />
+70-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:31:17-76
+70-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:31:27-74
+71            </intent-filter>
+72        </activity>
+73        <!--
+74             Don't delete the meta-data below.
+75             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+76        -->
+77        <meta-data
+77-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:36:9-38:33
+78            android:name="flutterEmbedding"
+78-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:37:13-44
+79            android:value="2" />
+79-->C:\Users\user\flutter_proj\cloned\voic_front\android\app\src\main\AndroidManifest.xml:38:13-30
+80
+81        <uses-library
+81-->[androidx.window:window:1.2.0] C:\Users\user\.gradle\caches\8.10.2\transforms\aed2861b2b6894f7067df3f3f96b791f\transformed\jetified-window-1.2.0\AndroidManifest.xml:23:9-25:40
+82            android:name="androidx.window.extensions"
+82-->[androidx.window:window:1.2.0] C:\Users\user\.gradle\caches\8.10.2\transforms\aed2861b2b6894f7067df3f3f96b791f\transformed\jetified-window-1.2.0\AndroidManifest.xml:24:13-54
+83            android:required="false" />
+83-->[androidx.window:window:1.2.0] C:\Users\user\.gradle\caches\8.10.2\transforms\aed2861b2b6894f7067df3f3f96b791f\transformed\jetified-window-1.2.0\AndroidManifest.xml:25:13-37
+84        <uses-library
+84-->[androidx.window:window:1.2.0] C:\Users\user\.gradle\caches\8.10.2\transforms\aed2861b2b6894f7067df3f3f96b791f\transformed\jetified-window-1.2.0\AndroidManifest.xml:26:9-28:40
+85            android:name="androidx.window.sidecar"
+85-->[androidx.window:window:1.2.0] C:\Users\user\.gradle\caches\8.10.2\transforms\aed2861b2b6894f7067df3f3f96b791f\transformed\jetified-window-1.2.0\AndroidManifest.xml:27:13-51
+86            android:required="false" />
+86-->[androidx.window:window:1.2.0] C:\Users\user\.gradle\caches\8.10.2\transforms\aed2861b2b6894f7067df3f3f96b791f\transformed\jetified-window-1.2.0\AndroidManifest.xml:28:13-37
+87
+88        <provider
+88-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\user\.gradle\caches\8.10.2\transforms\bb10008c4b33ee9597583412a41828ed\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:24:9-32:20
+89            android:name="androidx.startup.InitializationProvider"
+89-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\user\.gradle\caches\8.10.2\transforms\bb10008c4b33ee9597583412a41828ed\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:25:13-67
+90            android:authorities="com.example.vois.androidx-startup"
+90-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\user\.gradle\caches\8.10.2\transforms\bb10008c4b33ee9597583412a41828ed\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:26:13-68
+91            android:exported="false" >
+91-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\user\.gradle\caches\8.10.2\transforms\bb10008c4b33ee9597583412a41828ed\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:27:13-37
+92            <meta-data
+92-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\user\.gradle\caches\8.10.2\transforms\bb10008c4b33ee9597583412a41828ed\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+93                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+93-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\user\.gradle\caches\8.10.2\transforms\bb10008c4b33ee9597583412a41828ed\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+94                android:value="androidx.startup" />
+94-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\user\.gradle\caches\8.10.2\transforms\bb10008c4b33ee9597583412a41828ed\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+95            <meta-data
+95-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+96                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+97                android:value="androidx.startup" />
+97-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+98        </provider>
+99
+100        <receiver
+100-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+101            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+102            android:directBootAware="false"
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+103            android:enabled="true"
+103-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+104            android:exported="true"
+104-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+105            android:permission="android.permission.DUMP" >
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+106            <intent-filter>
+106-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+107                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+107-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+107-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+108            </intent-filter>
+109            <intent-filter>
+109-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+110                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+110-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+110-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+111            </intent-filter>
+112            <intent-filter>
+112-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+113                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+113-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+113-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+114            </intent-filter>
+115            <intent-filter>
+115-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+116                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+116-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+116-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\user\.gradle\caches\8.10.2\transforms\5aacd87baa6feaa7bece87b01e7698f0\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+117            </intent-filter>
+118        </receiver>
+119    </application>
+120
+121</manifest>

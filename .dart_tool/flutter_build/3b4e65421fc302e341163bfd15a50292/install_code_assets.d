@@ -1,0 +1,1 @@
+ C:\\Users\\user\\flutter_proj\\cloned\\voic_front\\.dart_tool\\flutter_build\\3b4e65421fc302e341163bfd15a50292\\native_assets.json: 
