@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../models/user_profile.dart';
 
 class AuthService {
+  static const _tokenKey = 'auth_token';
+
   Future<void> register({
     required Uri baseUri,
     required String username,
@@ -61,6 +65,25 @@ class AuthService {
     } finally {
       client.close(force: true);
     }
+  }
+
+  Future<void> saveToken(String token) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_tokenKey, token);
+  }
+
+  Future<String?> loadToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(_tokenKey);
+    if (token == null || token.trim().isEmpty) {
+      return null;
+    }
+    return token;
+  }
+
+  Future<void> clearToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_tokenKey);
   }
 
   Future<_HttpResponse> _post(Uri uri, Map<String, dynamic> body) async {

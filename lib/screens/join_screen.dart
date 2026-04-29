@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../config/app_config.dart';
 import '../custom_widgets/custom_textfield.dart';
-import '../models/user_profile.dart';
 import '../services/auth_service.dart';
 import 'rooms_screen.dart';
-
 class JoinScreen extends StatefulWidget {
   const JoinScreen({super.key});
 
@@ -22,6 +20,12 @@ class _JoinScreenState extends State<JoinScreen> {
   String _status = 'Войдите или зарегистрируйтесь, чтобы попробовать';
 
   Uri get _baseUri => Uri.parse(AppConfig.serverUrl);
+
+  @override
+  void initState() {
+    super.initState();
+    _restoreSessionIfPossible();
+  }
 
   @override
   void dispose() {
@@ -76,6 +80,13 @@ class _JoinScreenState extends State<JoinScreen> {
         username: _usernameCtrl.text.trim(),
         password: _passwordCtrl.text,
       );
+      await _auth.saveToken(token);
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _status = 'Сессия сохранена. Открываем комнаты...';
+      });
       final profile = await _auth.me(baseUri: _baseUri, token: token);
       if (!mounted) {
         return;
@@ -104,6 +115,46 @@ class _JoinScreenState extends State<JoinScreen> {
     }
   }
 
+  Future<void> _restoreSessionIfPossible() async {
+    setState(() {
+      _busy = true;
+      _status = 'Проверяем сохранённую сессию...';
+    });
+
+    try {
+      final token = await _auth.loadToken();
+      if (token == null) {
+        if (mounted) {
+          setState(() {
+            _busy = false;
+            _status = 'Войдите или зарегистрируйтесь, чтобы попробовать';
+          });
+        }
+        return;
+      }
+
+      final profile = await _auth.me(baseUri: _baseUri, token: token);
+      if (!mounted) {
+        return;
+      }
+      await Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder:
+              (_) => RoomsScreen(baseUri: _baseUri, token: token, profile: profile),
+        ),
+      );
+    } catch (_) {
+      await _auth.clearToken();
+      if (mounted) {
+        setState(() {
+          _busy = false;
+          _status = 'Сессия истекла. Войдите снова.';
+        });
+      }
+    }
+  }
+
   bool _validateFields() {
     if (_usernameCtrl.text.trim().isEmpty || _passwordCtrl.text.isEmpty) {
       setState(() {
@@ -127,112 +178,146 @@ class _JoinScreenState extends State<JoinScreen> {
             colors: [Color(0xFFFFFFFF), Color(0xFFF4FBFF), Color(0xFFEAF7FF)],
           ),
         ),
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 1080),
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  final compact = constraints.maxWidth < 820;
-                  return Flex(
-                    direction: compact ? Axis.vertical : Axis.horizontal,
+        child: SafeArea(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final compact = constraints.maxWidth < 820;
+              if (compact) {
+                return SingleChildScrollView(
+                  padding: const EdgeInsets.all(16),
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Expanded(
-                        flex: compact ? 0 : 10,
-                        child: _AuthHero(status: _status),
-                      ),
-                      SizedBox(
-                        width: compact ? 0 : 24,
-                        height: compact ? 24 : 0,
-                      ),
-                      Expanded(
-                        flex: 9,
-                        child: SingleChildScrollView(
-                          child: Card(
-                            child: Padding(
-                              padding: const EdgeInsets.all(24),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Вход в echo',
-                                    style: theme.textTheme.headlineMedium,
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Text(
-                                    'Регистрация без номера и почты. Всё просто.',
-                                    style: theme.textTheme.bodyLarge,
-                                  ),
-                                  const SizedBox(height: 28),
-                                  CustomTextfield(
-                                    hint: 'Имя пользователя',
-                                    controller: _usernameCtrl,
-                                    prefixIcon: Icons.person_outline,
-                                  ),
-                                  const SizedBox(height: 16),
-                                  CustomTextfield(
-                                    hint: 'Пароль',
-                                    controller: _passwordCtrl,
-                                    prefixIcon: Icons.lock_outline,
-                                    obscureText: true,
-                                    textInputAction: TextInputAction.done,
-                                    onSubmitted: (_) => _login(),
-                                  ),
-                                  const SizedBox(height: 24),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: ElevatedButton(
-                                          onPressed: _busy ? null : _login,
-                                          child: const Text('Войти'),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 12),
-                                      Expanded(
-                                        child: ElevatedButton(
-                                          onPressed: _busy ? null : _register,
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: const Color(
-                                              0xFFBEEBFF,
-                                            ),
-                                            foregroundColor: const Color(
-                                              0xFF17608E,
-                                            ),
-                                          ),
-                                          child: const Text('Регистрация'),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 20),
-                                  Container(
-                                    width: double.infinity,
-                                    padding: const EdgeInsets.all(18),
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFFF7FCFF),
-                                      borderRadius: BorderRadius.circular(22),
-                                      border: Border.all(
-                                        color: const Color(0xFFDCEFFC),
-                                      ),
-                                    ),
-                                    child: Text(
-                                      'Присоединяйтесь!',
-                                      style: theme.textTheme.bodyMedium,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                      _AuthHero(status: _status),
+                      const SizedBox(height: 16),
+                      _AuthCard(
+                        busy: _busy,
+                        usernameCtrl: _usernameCtrl,
+                        passwordCtrl: _passwordCtrl,
+                        onLogin: _login,
+                        onRegister: _register,
+                        theme: theme,
                       ),
                     ],
-                  );
-                },
-              ),
-            ),
+                  ),
+                );
+              }
+
+              return Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 1080),
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(child: _AuthHero(status: _status)),
+                        const SizedBox(width: 24),
+                        Expanded(
+                          child: _AuthCard(
+                            busy: _busy,
+                            usernameCtrl: _usernameCtrl,
+                            passwordCtrl: _passwordCtrl,
+                            onLogin: _login,
+                            onRegister: _register,
+                            theme: theme,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _AuthCard extends StatelessWidget {
+  const _AuthCard({
+    required this.busy,
+    required this.usernameCtrl,
+    required this.passwordCtrl,
+    required this.onLogin,
+    required this.onRegister,
+    required this.theme,
+  });
+
+  final bool busy;
+  final TextEditingController usernameCtrl;
+  final TextEditingController passwordCtrl;
+  final Future<void> Function() onLogin;
+  final Future<void> Function() onRegister;
+  final ThemeData theme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Вход в echo', style: theme.textTheme.headlineMedium),
+            const SizedBox(height: 10),
+            Text(
+              'Регистрация без номера и почты. Всё просто.',
+              style: theme.textTheme.bodyLarge,
+            ),
+            const SizedBox(height: 28),
+            CustomTextfield(
+              hint: 'Имя пользователя',
+              controller: usernameCtrl,
+              prefixIcon: Icons.person_outline,
+            ),
+            const SizedBox(height: 16),
+            CustomTextfield(
+              hint: 'Пароль',
+              controller: passwordCtrl,
+              prefixIcon: Icons.lock_outline,
+              obscureText: true,
+              textInputAction: TextInputAction.done,
+              onSubmitted: (_) => onLogin(),
+            ),
+            const SizedBox(height: 24),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: busy ? null : onLogin,
+                    child: const Text('Войти'),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: busy ? null : onRegister,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFBEEBFF),
+                      foregroundColor: const Color(0xFF17608E),
+                    ),
+                    child: const Text('Регистрация'),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                color: const Color(0xFFF7FCFF),
+                borderRadius: BorderRadius.circular(22),
+                border: Border.all(color: const Color(0xFFDCEFFC)),
+              ),
+              child: Text('Присоединяйтесь!', style: theme.textTheme.bodyMedium),
+            ),
+          ],
         ),
       ),
     );

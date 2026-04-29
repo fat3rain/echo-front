@@ -4,6 +4,7 @@ import 'package:vois/screens/profile_screen.dart';
 
 import '../models/room_summary.dart';
 import '../models/user_profile.dart';
+import '../services/auth_service.dart';
 import '../services/room_service.dart';
 import 'join_screen.dart';
 import 'room_screen.dart';
@@ -242,6 +243,10 @@ class _RoomsScreenState extends State<RoomsScreen> {
   }
 
   Future<void> _logout() async {
+    await AuthService().clearToken();
+    if (!mounted) {
+      return;
+    }
     await Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (_) => const JoinScreen()),
