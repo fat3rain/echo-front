@@ -157,6 +157,78 @@ class PeerTile extends StatelessWidget {
   }
 }
 
+class PeerListTile extends StatelessWidget {
+  const PeerListTile({super.key, required this.peer});
+
+  final Peer peer;
+
+  @override
+  Widget build(BuildContext context) {
+    final accent =
+        peer.local ? const Color(0xFF0096DE) : const Color(0xFF00AFF0);
+    final initial =
+        peer.name.isEmpty ? '?' : String.fromCharCode(peer.name.runes.first);
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFDCEFFC)),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 42,
+            height: 42,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: accent.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: Text(
+              initial.toUpperCase(),
+              style: TextStyle(
+                color: accent,
+                fontSize: 17,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              peer.local ? '${peer.name} (вы)' : peer.name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: Color(0xFF173A63),
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          _StatusChip(
+            icon: peer.muted ? Icons.mic_off_rounded : Icons.mic_rounded,
+            active: !peer.muted,
+            activeColor: accent,
+          ),
+          const SizedBox(width: 8),
+          _StatusChip(
+            icon:
+                peer.videoEnabled
+                    ? Icons.videocam_rounded
+                    : Icons.videocam_off_rounded,
+            active: peer.videoEnabled,
+            activeColor: accent,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _StatusChip extends StatelessWidget {
   const _StatusChip({
     required this.icon,

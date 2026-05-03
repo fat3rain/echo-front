@@ -267,6 +267,7 @@ class RoomController extends ChangeNotifier {
 
             final id = participant['id'] as String?;
             final name = participant['displayName'] as String?;
+            final participantMuted = participant['muted'] as bool? ?? false;
             final videoEnabled = participant['videoEnabled'] as bool? ?? false;
             if (id == null || name == null) {
               continue;
@@ -276,15 +277,22 @@ class RoomController extends ChangeNotifier {
 
             if (id == userId) {
               peers['local']?.videoEnabled = cameraEnabled;
+              peers['local']?.muted = muted;
               continue;
             }
 
             final existing = peers[id];
             if (existing != null) {
               existing.name = name;
+              existing.muted = participantMuted;
               existing.videoEnabled = videoEnabled;
             } else {
-              peers[id] = Peer(id: id, name: name, videoEnabled: videoEnabled);
+              peers[id] = Peer(
+                id: id,
+                name: name,
+                muted: participantMuted,
+                videoEnabled: videoEnabled,
+              );
             }
           }
 
@@ -462,6 +470,7 @@ class RoomController extends ChangeNotifier {
     }
 
     peers['local']?.muted = muted;
+    _sendMediaState();
     notifyListeners();
   }
 
@@ -483,7 +492,7 @@ class RoomController extends ChangeNotifier {
           localPeer.renderer?.srcObject = null;
         }
 
-        _sendVideoState(false);
+        _sendMediaState();
         _setStatus('Камера выключена. Голосовой чат продолжается.');
       } else {
         _setStatus('Подключаем камеру...');
@@ -496,7 +505,7 @@ class RoomController extends ChangeNotifier {
           await _attachRenderer(localPeer, stream);
         }
 
-        _sendVideoState(true);
+        _sendMediaState();
         _setStatus('Камера включена.');
       }
 
@@ -726,14 +735,18 @@ class RoomController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _sendVideoState(bool enabled) {
+  void _sendMediaState() {
     if (!_joinSent) {
       return;
     }
 
     try {
-      ws.send({'type': 'mediaState', 'videoEnabled': enabled});
-      _log(enabled ? 'Статус камеры: включена.' : 'Статус камеры: выключена.');
+      ws.send({
+        'type': 'mediaState',
+        'videoEnabled': cameraEnabled,
+        'muted': muted,
+      });
+      _log(cameraEnabled ? 'Статус камеры: включена.' : 'Статус камеры: выключена.');
     } catch (error, stackTrace) {
       developer.log(
         'Не удалось отправить статус камеры',

@@ -62,9 +62,11 @@ class _RoomsScreenState extends State<RoomsScreen> {
         _status = 'Не удалось загрузить комнаты: $error';
       });
     } finally {
-      setState(() {
-        _busy = false;
-      });
+      if (mounted) {
+        setState(() {
+          _busy = false;
+        });
+      }
     }
   }
 
@@ -114,15 +116,22 @@ class _RoomsScreenState extends State<RoomsScreen> {
       _rooms.insert(0, room);
       setState(() {
         _status = 'Комната ${room.name} создана. ID: ${room.id}';
+        _busy = false;
       });
+      if (!mounted) {
+        return;
+      }
+      await _openRoom(room);
     } catch (error) {
       setState(() {
         _status = 'Не удалось создать комнату: $error';
       });
     } finally {
-      setState(() {
-        _busy = false;
-      });
+      if (mounted) {
+        setState(() {
+          _busy = false;
+        });
+      }
     }
   }
 

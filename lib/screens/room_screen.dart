@@ -177,6 +177,11 @@ class _RoomView extends StatelessWidget {
               Expanded(
                 child: LayoutBuilder(
                   builder: (context, constraints) {
+                    final peers = controller.peers.values.toList();
+                    final videoPeers =
+                        peers.where((peer) => peer.videoEnabled).toList();
+                    final voicePeers =
+                        peers.where((peer) => !peer.videoEnabled).toList();
                     final columns =
                         constraints.maxWidth > 860
                             ? 3
@@ -184,20 +189,52 @@ class _RoomView extends StatelessWidget {
                             ? 2
                             : 1;
 
-                    final hasVideo = controller.peers.values.any(
-                      (peer) => peer.videoEnabled,
-                    );
+                    if (videoPeers.isEmpty) {
+                      return ListView.separated(
+                        itemCount: voicePeers.length,
+                        separatorBuilder: (_, _) => const SizedBox(height: 10),
+                        itemBuilder:
+                            (context, index) =>
+                                PeerListTile(peer: voicePeers[index]),
+                      );
+                    }
 
-                    return GridView.count(
-                      crossAxisCount: columns,
-                      crossAxisSpacing: 14,
-                      mainAxisSpacing: 14,
-                      childAspectRatio:
-                          hasVideo ? (columns == 1 ? 0.94 : 0.9) : 1.25,
-                      children:
-                          controller.peers.values
-                              .map((peer) => PeerTile(peer: peer))
-                              .toList(),
+                    return CustomScrollView(
+                      slivers: [
+                        SliverGrid(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: columns,
+                                crossAxisSpacing: 14,
+                                mainAxisSpacing: 14,
+                                childAspectRatio:
+                                    columns == 1 ? 0.94 : 0.9,
+                              ),
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) =>
+                                PeerTile(peer: videoPeers[index]),
+                            childCount: videoPeers.length,
+                          ),
+                        ),
+                        if (voicePeers.isNotEmpty)
+                          const SliverToBoxAdapter(
+                            child: SizedBox(height: 14),
+                          ),
+                        if (voicePeers.isNotEmpty)
+                          SliverList(
+                            delegate: SliverChildBuilderDelegate((
+                              context,
+                              index,
+                            ) {
+                              if (index.isOdd) {
+                                return const SizedBox(height: 10);
+                              }
+                              return PeerListTile(
+                                peer: voicePeers[index ~/ 2],
+                              );
+                            }, childCount: voicePeers.length * 2 - 1),
+                          ),
+                      ],
                     );
                   },
                 ),

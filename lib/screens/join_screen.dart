@@ -39,6 +39,9 @@ class _JoinScreenState extends State<JoinScreen> {
       return;
     }
 
+    final username = _usernameCtrl.text.trim();
+    final password = _passwordCtrl.text;
+
     setState(() {
       _busy = true;
       _status = 'Создаём аккаунт...';
@@ -47,20 +50,46 @@ class _JoinScreenState extends State<JoinScreen> {
     try {
       await _auth.register(
         baseUri: _baseUri,
-        username: _usernameCtrl.text.trim(),
-        password: _passwordCtrl.text,
+        username: username,
+        password: password,
       );
+      final token = await _auth.login(
+        baseUri: _baseUri,
+        username: username,
+        password: password,
+      );
+      await _auth.saveToken(token);
+      if (!mounted) {
+        return;
+      }
       setState(() {
-        _status = 'Аккаунт создан. Теперь войдите в echo.';
+        _status = 'Аккаунт создан. Открываем комнаты...';
       });
+      final profile = await _auth.me(baseUri: _baseUri, token: token);
+      if (!mounted) {
+        return;
+      }
+      await Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder:
+              (_) => RoomsScreen(
+                baseUri: _baseUri,
+                token: token,
+                profile: profile,
+              ),
+        ),
+      );
     } catch (error) {
       setState(() {
         _status = 'Ошибка регистрации: $error';
       });
     } finally {
-      setState(() {
-        _busy = false;
-      });
+      if (mounted) {
+        setState(() {
+          _busy = false;
+        });
+      }
     }
   }
 
@@ -68,6 +97,9 @@ class _JoinScreenState extends State<JoinScreen> {
     if (!_validateFields()) {
       return;
     }
+
+    final username = _usernameCtrl.text.trim();
+    final password = _passwordCtrl.text;
 
     setState(() {
       _busy = true;
@@ -77,8 +109,8 @@ class _JoinScreenState extends State<JoinScreen> {
     try {
       final token = await _auth.login(
         baseUri: _baseUri,
-        username: _usernameCtrl.text.trim(),
-        password: _passwordCtrl.text,
+        username: username,
+        password: password,
       );
       await _auth.saveToken(token);
       if (!mounted) {
