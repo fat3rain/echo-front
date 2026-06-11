@@ -1,3 +1,4 @@
+[🇬🇧 English](#echo--real-time-voice-chat-application) · [🇷🇺 Русский](#echo--приложение-для-голосового-чата-в-реальном-времени)
 [README.md](https://github.com/user-attachments/files/28856138/README.md)
 # Echo — Real-Time Voice Chat Application
 
