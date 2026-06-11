@@ -1,3 +1,4 @@
+[🇷🇺 Читать на русском](./README.ru.md)
 [README.md](https://github.com/user-attachments/files/28856138/README.md)
 # Echo — Real-Time Voice Chat Application
 
