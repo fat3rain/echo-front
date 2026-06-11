@@ -1,4 +1,4 @@
-[🇬🇧 English](#echo--real-time-voice-chat-application) · [🇷🇺 Русский](#echo--приложение-для-голосового-чата-в-реальном-времени)
+[🇷🇺 Русский](#echo--приложение-для-голосового-чата-в-реальном-времени)
 [README.md](https://github.com/user-attachments/files/28856138/README.md)
 # Echo — Real-Time Voice Chat Application
 
@@ -177,6 +177,8 @@ git pull origin main
 **Daniil Bedarev** — [@fat3rain](https://github.com/fat3rain)   
 Telegram: [@fattrain](https://t.me/fattrain)
 
+[🇬🇧 English](#echo--real-time-voice-chat-application)
+
 # Echo — Приложение для голосового чата в реальном времени
 
 > Flutter-приложение для голосового общения в комнатах, построенное на WebRTC и SFU-архитектуре.
@@ -335,6 +337,5 @@ git pull origin main
 ## Автор
 
 **Бедарев Даниил** — [@fat3rain](https://github.com/fat3rain)  
-Студент 3 курса, Прикладная информатика, ГУУ Москва  
 Telegram: [@fattrain](https://t.me/fattrain)
 
